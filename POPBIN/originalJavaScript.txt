@@ -1,0 +1,40 @@
+const clicks = document.getElementById("count");
+
+let counts = 0;
+
+function openTheMouse(){
+    document.body.style = `background-image:url('./openMouse.jpg')`;
+    clicks.style = `font-size:58px;`
+}
+function closeTheMouse(){
+    document.body.style = `background-image:url('./closeMouse.jpg')`;
+    clicks.style = `font-size:50px;`
+}
+
+window.addEventListener("keyup", function countsPlus(){
+    counts += 1;
+    clicks.innerText = `${counts}`;
+    closeTheMouse();
+
+    if(counts!==NaN){
+    localStorage.setItem("value", counts);
+    }
+});
+window.addEventListener("keydown", openTheMouse);
+
+window.addEventListener("mouseup", function countsPlus(){
+    counts += 1;    
+    clicks.innerText = `${counts}`;
+    closeTheMouse();
+
+    if(counts!==NaN){
+    localStorage.setItem("value", counts);
+    }
+});
+window.addEventListener("mousedown", openTheMouse);
+
+const saveValue = parseInt(localStorage.getItem("value"));
+if(saveValue!==NaN){
+    counts = parseInt(saveValue) || 0;
+    console.log(counts);
+}
